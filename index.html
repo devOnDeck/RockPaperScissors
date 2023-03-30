@@ -4,69 +4,104 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Rock,Paper,Scissors</title>
   </head>
   <body>
     <script>
       function getComputerChoice() {
-        const pick = ["rock", "paper", "scissors"];
-        return pick[Math.floor(Math.random() * pick.length)];
+        const choice = ["rock", "paper", "scissors"];
+        return choice[Math.floor(Math.random() * choice.length)];
       }
 
       function playRound(playerSelection, computerSelection) {
         if (playerSelection === computerSelection) {
           userScore++;
-          computerScore++;
-          return `It's a tie ! you and computer both choose ${playerSelection}`;
+          compScore++;
+          return (
+            tie + " " + `You and Computer both choose: ${computerSelection}`
+          );
         } else if (
           playerSelection === "rock" &&
           computerSelection === "scissors"
         ) {
           userScore++;
-          return "You win! Rock beats Scissors";
+          return (
+            win +
+            `computer chose ${computerSelection}` +
+            " " +
+            "Rock beats Scissors"
+          );
         } else if (
           playerSelection === "scissors" &&
           computerSelection === "paper"
         ) {
           userScore++;
-          return "You win! Scissors beat Paper";
+          return (
+            win +
+            `computer chose ${computerSelection}` +
+            " " +
+            "Scissors beats Paper"
+          );
         } else if (
           playerSelection === "paper" &&
           computerSelection === "rock"
         ) {
           userScore++;
-          return "You win! Paper beats Rock";
+          return (
+            win +
+            `computer chose ${computerSelection}` +
+            " " +
+            "Paper beats Rock"
+          );
         } else {
-          computerScore++;
-          return `You lose ${computerSelection} beats ${playerSelection}`;
+          compScore++;
+          return (
+            lose +
+            `computer chose ${computerSelection}` +
+            " " +
+            `${computerSelection} beats ${playerSelection}`
+          );
+        }
+      }
+      let win = "You win! ";
+      let tie = "It's a tie!";
+      let lose = "You lose! :(";
+
+      let userScore = 0;
+      let compScore = 0;
+
+      function score() {
+        if (userScore > compScore) {
+          return "Congratulations you have won the game!";
+        } else if (userScore === compScore) {
+          return " That was close, the game ends with a tie !";
+        } else {
+          return "You lose, best luck next time !";
         }
       }
 
-      let userScore = parseInt(0);
-      let computerScore = parseInt(0);
-
-      var i = 0;
-      const play = () => {
-        let playerSelection = prompt("Pick a move");
+      let i = 0;
+      const game = () => {
+        let playerSelection = prompt("Chose now: ").toLowerCase();
         const computerSelection = getComputerChoice();
         console.log(playRound(playerSelection, computerSelection));
-        console.log("your score = " + userScore);
-        console.log("Computer's score = " + computerScore);
+        console.log("Your score: " + userScore);
+        console.log("Computer score: ") + compScore;
         i++;
         if (i !== 5) {
-          play();
+          game();
         } else {
           alert(
-            "Game Over=> User(" +
+            "Game is over!\nYour score: " +
               userScore +
-              ") vs Computer(" +
-              computerScore +
-              ")"
+              "\nComputer score: " +
+              compScore +
+              "\n" +
+              score()
           );
         }
       };
-
-      play();
+      game();
     </script>
   </body>
 </html>
