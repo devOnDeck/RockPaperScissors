@@ -8,11 +8,12 @@
   </head>
   <body>
     <script>
+      //This function let computer to select its pick for the game
       function getComputerChoice() {
         const choice = ["rock", "paper", "scissors"];
         return choice[Math.floor(Math.random() * choice.length)];
       }
-
+      //This are the rules for the game
       function playRound(playerSelection, computerSelection) {
         if (playerSelection === computerSelection) {
           userScore++;
@@ -63,13 +64,15 @@
           );
         }
       }
-      let win = "You win! ";
-      let tie = "It's a tie!";
-      let lose = "You lose! :(";
 
+      //This variables are used in playRound function to display massages
+      let win = "Nice, You win! ";
+      let tie = "Uh,that was close, It's a tie!";
+      let lose = "Unfortunately, You lose! :(";
+      //This variables are used in playRound to keep score of user and computer for each round played
       let userScore = 0;
       let compScore = 0;
-
+      //This function display a massage at the end of the game and is used in function game()
       function score() {
         if (userScore > compScore) {
           return "Congratulations you have won the game!";
@@ -79,7 +82,7 @@
           return "You lose, best luck next time !";
         }
       }
-
+      //This function let user to play 5 rounds of the game in row
       let i = 0;
       const game = () => {
         let playerSelection = prompt("Chose now: ").toLowerCase();
